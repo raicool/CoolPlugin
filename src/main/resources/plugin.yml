@@ -1,0 +1,27 @@
+name: CoolPlugin
+version: ${project.version}
+main: cool.coolplugin.CoolPlugin
+api-version: 1.16
+authors: [ rai/wooof ]
+description: Adds various things for vanilla MC servers!
+
+commands:
+  color:
+    description: "changes your name color!"
+    usage: /<command>
+    aliases: [changecolor, setcolor]
+  stats:
+    description: "view things like a player's UUID!"
+    usage: /<command>
+    aliases: [viewstats, whois, checkplayer]
+  server:
+    description: "view the server's stats"
+    usage: /<command>
+    aliases: [serverstats]
+  ping:
+    description: "view your own ping"
+    usage: /<command>
+    aliases: [pong]
+  unload:
+    description: "unload"
+    usage: /<command>
