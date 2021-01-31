@@ -22,7 +22,6 @@ public class CoolPlugin extends JavaPlugin {
         //load commands
         this.getCommand("Color").setExecutor(new Color());
         this.getCommand("Stats").setExecutor(new Stats());
-        this.getCommand("Ping").setExecutor(new Ping());
         this.getCommand("Server").setExecutor(new ServerStats(this));
         this.getCommand("Unload").setExecutor(new Unload(this));
     }

@@ -18,10 +18,6 @@ commands:
     description: "view the server's stats"
     usage: /<command>
     aliases: [serverstats]
-  ping:
-    description: "view your own ping"
-    usage: /<command>
-    aliases: [pong]
   unload:
     description: "unload"
     usage: /<command>
