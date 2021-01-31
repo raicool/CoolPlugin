@@ -13,10 +13,9 @@ import static cool.coolplugin.CoolPlugin.data;
 public class ServerListener implements Listener {
 
     public static String checkPrefix(OfflinePlayer player) {
-        if (player.isOp()) {
+        if (player.isOp())
             return colorize("&c&lOp&r ");
-        }
-        return null;
+        else return "";
     }
     
     @EventHandler
