@@ -24,7 +24,7 @@ public class ServerStats implements CommandExecutor {
         Runtime runtime = Runtime.getRuntime();
 
         sender.sendMessage(colorize("&bServer Stats " +
-                "\n&aHeap Memory: &c" + (toMegaBytesDecimal(runtime.totalMemory() - runtime.freeMemory()) + " &b/&c " + toMegaBytesDecimal(runtime.maxMemory())) + "MB" +
+                "\n&aHeap Memory: &c" + (toMegaBytesDecimal(runtime.totalMemory() - runtime.freeMemory()) + " &b/&c " + toMegaBytesDecimal(runtime.maxMemory())) + " MB" +
                 "\n&aProcessors: &c" + runtime.availableProcessors() +
                 "\n&aTPS: &c" + getServer.getTPS()[0]));
 

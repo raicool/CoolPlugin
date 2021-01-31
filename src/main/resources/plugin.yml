@@ -19,5 +19,5 @@ commands:
     usage: /<command>
     aliases: [serverstats]
   unload:
-    description: "unload"
+    description: "unload the plugin (Console Only)"
     usage: /<command>

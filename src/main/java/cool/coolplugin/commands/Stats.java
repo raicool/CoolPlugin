@@ -48,19 +48,18 @@ public class Stats implements CommandExecutor {
         assert player != null;
         path = "players." + player.getUniqueId() + ".color";
 
-        // Check if Prefix or Name color is null
-        String prefix;
-        String nameColor;
-        if (data.getConfig().get(path) == null)
-        {
-            nameColor = "&a";
-        } else {
+        // Check if prefix or name color is not null
+        String prefix = "";
+        String nameColor = "&a";
+
+        // Name color
+        if (!(data.getConfig().get(path) == null))
             nameColor = data.getConfig().get(path).toString();
-        } if (checkPrefix(player) == null) {
-            prefix = "";
-        } else {
+
+        // Prefix
+        if (!(checkPrefix(player) == null))
             prefix = checkPrefix(player);
-        }
+
 
         // Main stats message
         sender.sendMessage(colorize(
