@@ -10,8 +10,8 @@ public class CoolPlugin extends JavaPlugin {
 
     public static DataListener data;
 
-    public static String colorize(String textToTranslate) {
-        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', textToTranslate);
+    public static String colorize(String translate) {
+        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', translate);
     }
 
     @Override

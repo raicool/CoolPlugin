@@ -1,6 +1,5 @@
 package cool.coolplugin.commands;
 
-import com.sun.istack.internal.NotNull;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,8 +11,7 @@ import static cool.coolplugin.CoolPlugin.colorize;
 import static cool.coolplugin.CoolPlugin.data;
 
 public class Color implements CommandExecutor {
-    private static String color = null;
-    private static String path = null;
+    private transient String color = null;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -23,7 +21,7 @@ public class Color implements CommandExecutor {
         }
 
         UUID playerUUID = ((Player) sender).getUniqueId();
-        path = "players." + playerUUID.toString()  + ".color";
+        String path = "players." + playerUUID.toString() + ".color";
 
         if (args.length <= 0) {
             sender.sendMessage(colorize("&aOptions: \n&cred, &6orange, &eyellow, &agreen, &9blue, &5purple, &bcyan, &3aqua, &4darkred, &dpink, &fwhite"));
