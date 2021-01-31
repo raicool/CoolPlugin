@@ -4,6 +4,8 @@ import cool.coolplugin.commands.*;
 import cool.coolplugin.listeners.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 public class CoolPlugin extends JavaPlugin {
 
     public static DataListener data;
@@ -28,6 +30,7 @@ public class CoolPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        this.getLogger().log(Level.INFO, "Plugin Disabled.");
         this.saveConfig();
         setEnabled(false);
     }

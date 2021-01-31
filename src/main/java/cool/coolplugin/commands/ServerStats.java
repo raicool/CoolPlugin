@@ -10,13 +10,14 @@ import static cool.coolplugin.CoolPlugin.colorize;
 
 public class ServerStats implements CommandExecutor {
 
-    Server getServer;
-    public ServerStats(CoolPlugin Server) {
-        this.getServer = Server.getServer();
-    }
+    private Server getServer;
 
     private long toMegaBytesDecimal(long memory) {
         return memory / 1000000;
+    }
+
+    public ServerStats(CoolPlugin Server) {
+        this.getServer = Server.getServer();
     }
 
     @Override

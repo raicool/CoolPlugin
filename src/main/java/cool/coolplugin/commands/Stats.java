@@ -15,6 +15,9 @@ import static cool.coolplugin.listeners.ServerListener.checkPrefix;
 
 public class Stats implements CommandExecutor {
 
+    private static String defaultPrefix = "";
+    private static String defaultNameColor = "&a";
+
     public String Time(long time) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeZone(TimeZone.getTimeZone("EST"));
@@ -31,11 +34,10 @@ public class Stats implements CommandExecutor {
         OfflinePlayer player;
         String path;
 
-        // Check if there is an argument
-        if (args.length <= 0) {
+        if (args.length <= 0)
             // Get player from Command Sender
             player = Bukkit.getPlayer(sender.getName());
-        } else {
+        else {
             // Try to get player from Bukkit
             try {
                 player = Bukkit.getOfflinePlayer(data.findUUID(args[0]));
@@ -49,23 +51,20 @@ public class Stats implements CommandExecutor {
         path = "players." + player.getUniqueId() + ".color";
 
         // Check if prefix or name color is not null
-        String prefix = "";
-        String nameColor = "&a";
 
         // Name color
         if (!(data.getConfig().get(path) == null))
-            nameColor = data.getConfig().get(path).toString();
+            defaultNameColor = data.getConfig().get(path).toString();
 
         // Prefix
         if (!(checkPrefix(player) == null))
-            prefix = checkPrefix(player);
-
+            defaultPrefix = checkPrefix(player);
 
         // Main stats message
         sender.sendMessage(colorize(
                 "&bStatistics of player &l"+ player.getName() +
                 "\n&r&aUUID&0.......................&a: " + player.getUniqueId().toString() +
-                "\n&aDisplay Name&0..&a: " + prefix + nameColor + player.getName() +
+                "\n&aDisplay Name&0..&a: " + defaultPrefix + defaultNameColor + player.getName() +
                 "\n&aBanned?&0.............&a: " + player.isBanned() +
                 "\n&aOp?&0.........................&a: " + player.isOp() +
                 "\n&aLast Online&0......&a: " + Time(player.getLastSeen())));

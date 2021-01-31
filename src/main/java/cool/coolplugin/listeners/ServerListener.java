@@ -22,14 +22,8 @@ public class ServerListener implements Listener {
     public void chatFormat (AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         String path = "players." + player.getUniqueId().toString()  + ".color";
-        String prefix = "";
 
-        // Give prefix if the player is op
-        if (!(data.getConfig().get(path) == null)) {
-            event.setFormat(colorize(prefix + data.getConfig().get(path) + player.getDisplayName() + "&7: &r" + event.getMessage()));
-        } else {
-            event.setFormat(colorize(prefix + "&a" + player.getDisplayName() + "&7: &r" + event.getMessage()));
-        }
+        event.setFormat(colorize(checkPrefix(player) + data.getConfig().get(path) + player.getDisplayName() + "&7: &r" + event.getMessage()));
     }
 
     @EventHandler
