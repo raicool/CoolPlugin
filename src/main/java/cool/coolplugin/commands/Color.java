@@ -13,14 +13,15 @@ import static cool.coolplugin.CoolPlugin.data;
 public class Color implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        UUID playerUUID = ((Player) sender).getUniqueId();
-        String path = "players." + playerUUID.toString()  + ".color";
-        String color = null;
-        
+
         if (!(sender instanceof Player)) {
             sender.sendMessage("U cant even chat");
             return false;
         }
+
+        UUID playerUUID = ((Player) sender).getUniqueId();
+        String path = "players." + playerUUID.toString()  + ".color";
+        String color = null;
 
         if (args.length <= 0) {
             sender.sendMessage(colorize("&aOptions: \n&cred, &6orange, &eyellow, &agreen, &9blue, &5purple, &bcyan, &3aqua, &4darkred, &dpink, &fwhite"));
