@@ -1,7 +1,9 @@
 package cool.coolplugin;
 
 import cool.coolplugin.commands.*;
-import cool.coolplugin.listeners.*;
+import cool.coolplugin.listeners.DataListener;
+import cool.coolplugin.listeners.ServerListener;
+import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -24,9 +26,15 @@ public class CoolPlugin extends JavaPlugin {
         //load commands
         this.getCommand("Color").setExecutor(new Color());
         this.getCommand("Stats").setExecutor(new Stats());
+        this.getCommand("Protect").setExecutor(new Protect());
+        this.getCommand("Password").setExecutor(new Password());
         this.getCommand("Nickname").setExecutor(new Nickname());
         this.getCommand("Server").setExecutor(new ServerStats(this));
         this.getCommand("Unload").setExecutor(new Unload(this));
+
+        //load limbo world if present
+        if (data.getConfig().getBoolean("serverprotect", true) & data.getConfig().getString("serverlimbo") != null)
+            new WorldCreator(data.getConfig().getString("serverlimbo")).createWorld();
     }
 
     @Override

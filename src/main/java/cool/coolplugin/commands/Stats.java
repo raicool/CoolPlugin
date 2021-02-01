@@ -1,5 +1,6 @@
 package cool.coolplugin.commands;
 
+import cool.coolplugin.commands.interfaces.CommandInterface;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -13,21 +14,7 @@ import static cool.coolplugin.CoolPlugin.colorize;
 import static cool.coolplugin.CoolPlugin.data;
 import static cool.coolplugin.listeners.ServerListener.checkPrefix;
 
-public class Stats implements CommandExecutor {
-
-    private static String defaultPrefix = "";
-    private static String defaultNameColor = "&a";
-
-    public String Time(long time) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeZone(TimeZone.getTimeZone("EST"));
-        cal.setTimeInMillis(time);
-        return ((cal.get(Calendar.MONTH) + 1) + "/" +
-                cal.get(Calendar.DAY_OF_MONTH) + "/" +
-                cal.get(Calendar.YEAR) + " at " +
-                cal.get(Calendar.HOUR_OF_DAY) + ":" +
-                cal.get(Calendar.MINUTE) + " EST (UTC-05:00)");
-    }
+public class Stats implements CommandExecutor, CommandInterface {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -35,10 +22,8 @@ public class Stats implements CommandExecutor {
         String path;
 
         if (args.length <= 0)
-            // Get player from Command Sender
             player = Bukkit.getPlayer(sender.getName());
         else
-            // Try to get player from Bukkit
             try
             {
                 player = Bukkit.getOfflinePlayer(data.findUUID(args[0]));
@@ -56,7 +41,7 @@ public class Stats implements CommandExecutor {
 
         // Name color
         if (!(data.getConfig().get(path) == null))
-            defaultNameColor = data.getConfig().get(path).toString();
+            defaultNameColor = data.getConfig().getString(path);
 
         // Prefix
         if (!(checkPrefix(player) == null))
@@ -69,8 +54,23 @@ public class Stats implements CommandExecutor {
                 "\n&aDisplay Name&0..&a: " + defaultPrefix + defaultNameColor + player.getName() +
                 "\n&aBanned?&0.............&a: " + player.isBanned() +
                 "\n&aOp?&0.........................&a: " + player.isOp() +
-                "\n&aLast Online&0......&a: " + Time(player.getLastSeen())));
+                "\n&aLast Online&0......&a: " + Time(player.getLastSeen()) +
+                "\n&aIn Limbo?.........:" + inLimbo(player.getPlayer(),data)));
 
         return true;
+    }
+
+    private static String defaultPrefix = "";
+    private static String defaultNameColor = "&a";
+
+    public String Time(long time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("EST"));
+        cal.setTimeInMillis(time);
+        return ((cal.get(Calendar.MONTH) + 1) + "/" +
+                cal.get(Calendar.DAY_OF_MONTH) + "/" +
+                cal.get(Calendar.YEAR) + " at " +
+                cal.get(Calendar.HOUR_OF_DAY) + ":" +
+                cal.get(Calendar.MINUTE) + " EST (UTC-05:00)");
     }
 }

@@ -25,3 +25,8 @@ commands:
     description: "changes your chat name"
     usage: /<command>
     aliases: [nickname, changename]
+  protect:
+    description: "protects your account"
+    usage: /<command>
+  password:
+    usage: /<command>

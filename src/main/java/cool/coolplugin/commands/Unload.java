@@ -12,13 +12,6 @@ import static cool.coolplugin.CoolPlugin.colorize;
 
 public class Unload implements CommandExecutor {
 
-    Plugin plugin;
-    PluginLoader pluginLoader;
-    public Unload(CoolPlugin server) {
-        this.pluginLoader = server.getPluginLoader();
-        this.plugin = server.getPlugin(server.getClass());
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof ConsoleCommandSender)
@@ -27,5 +20,12 @@ public class Unload implements CommandExecutor {
             sender.sendMessage(colorize("&cConsole only command."));
 
         return true;
+    }
+
+    Plugin plugin;
+    PluginLoader pluginLoader;
+    public Unload(CoolPlugin server) {
+        this.pluginLoader = server.getPluginLoader();
+        this.plugin = server.getPlugin(server.getClass());
     }
 }

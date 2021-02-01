@@ -1,20 +1,19 @@
 package cool.coolplugin.commands;
 
+import cool.coolplugin.commands.interfaces.CommandInterface;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import static cool.coolplugin.CoolPlugin.colorize;
 import static cool.coolplugin.CoolPlugin.data;
 
-public class Nickname implements CommandExecutor {
+public class Nickname implements CommandExecutor, CommandInterface {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!(sender instanceof Player))
-            return false;
+        isPlayer(sender);
 
         String path = "players." + sender.getName() + ".nickname";
 
