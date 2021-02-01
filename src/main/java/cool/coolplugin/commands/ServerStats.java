@@ -10,7 +10,7 @@ import static cool.coolplugin.CoolPlugin.colorize;
 
 public class ServerStats implements CommandExecutor {
 
-    private Server getServer;
+    private final Server getServer;
 
     private long toMegaBytesDecimal(long memory) {
         return memory / 1000000;
