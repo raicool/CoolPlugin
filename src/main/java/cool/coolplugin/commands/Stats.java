@@ -54,8 +54,7 @@ public class Stats implements CommandExecutor, CommandInterface {
                 "\n&aDisplay Name&0..&a: " + defaultPrefix + defaultNameColor + player.getName() +
                 "\n&aBanned?&0.............&a: " + player.isBanned() +
                 "\n&aOp?&0.........................&a: " + player.isOp() +
-                "\n&aLast Online&0......&a: " + Time(player.getLastSeen()) +
-                "\n&aIn Limbo?.........:" + inLimbo(player.getPlayer(),data)));
+                "\n&aLast Online&0......&a: " + Time(player.getLastSeen())));
 
         return true;
     }

@@ -37,7 +37,6 @@ public class ServerListener extends Protect implements Listener {
 
         // Check if player has a pass connected to account
         if (data.getConfig().getString("players." + player.getName().toLowerCase() + ".password") != null & data.getConfig().getBoolean("serverprotect", true)) {
-            player.sendMessage("a");
             super.Prompt(player);
             Limbo.sendToLimbo(player);
         }
