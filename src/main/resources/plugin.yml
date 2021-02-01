@@ -21,3 +21,7 @@ commands:
   unload:
     description: "unload the plugin (Console Only)"
     usage: /<command>
+  nick:
+    description: "changes your chat name"
+    usage: /<command>
+    aliases: [nickname, changename]

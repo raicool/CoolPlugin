@@ -22,9 +22,8 @@ public class DataListener implements Listener {
     }
 
     public void reloadConfig() {
-        if (this.configFile == null) {
+        if (this.configFile == null)
             this.configFile = new File(this.plugin.getDataFolder(), "data.yml");
-        }
 
         this.dataConfig = YamlConfiguration.loadConfiguration(this.configFile);
 
@@ -36,39 +35,37 @@ public class DataListener implements Listener {
     }
 
     public FileConfiguration getConfig() {
-        if (this.dataConfig == null) {
+        if (this.dataConfig == null)
             reloadConfig();
-        }
 
         return this.dataConfig;
     }
 
     public void saveConfig() {
-        if (this.dataConfig == null || this.configFile == null) {
+        if (this.dataConfig == null || this.configFile == null)
             return;
-        }
 
-        try {
+        try
+        {
             this.getConfig().save(configFile);
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             plugin.getLogger().log(Level.SEVERE, "Could not save config to ", e);
         }
     }
 
     public void saveDefaultConfig() {
-        if (this.configFile == null) {
+        if (this.configFile == null)
             this.configFile = new File(this.plugin.getDataFolder(), "data.yml");
-        }
 
-        if (!this.configFile.exists()) {
+        if (!this.configFile.exists())
             this.plugin.saveResource("data.yml", false);
-        }
     }
 
     public UUID findUUID(String player) {
-        if (this.getConfig().contains("uuids." + player.toLowerCase() + ".uuid")) {
-            return UUID.fromString((String)this.getConfig().get("uuids." + player + ".uuid"));
-        }
+        if (this.getConfig().contains("players." + player.toLowerCase() + ".uuid"))
+            return UUID.fromString((String)this.getConfig().get("players." + player + ".uuid"));
         return null;
     }
 }

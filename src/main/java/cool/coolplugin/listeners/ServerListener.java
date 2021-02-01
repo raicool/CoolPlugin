@@ -21,9 +21,10 @@ public class ServerListener implements Listener {
     @EventHandler
     public void chatFormat (AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        String path = "players." + player.getUniqueId().toString()  + ".color";
+        String path = "players." + player.getName()  + ".color";
+        String nickPath = "players." + player.getName() + ".nickname";
 
-        event.setFormat(colorize(checkPrefix(player) + data.getConfig().get(path) + player.getDisplayName() + "&7: &r" + event.getMessage()));
+        event.setFormat(colorize(checkPrefix(player) + data.getConfig().get(path) + data.getConfig().get(nickPath) + "&7: &r" + event.getMessage()));
     }
 
     @EventHandler
@@ -31,7 +32,9 @@ public class ServerListener implements Listener {
         Player player = event.getPlayer();
 
         // Apply changes to data.yml and save
-        data.getConfig().set("uuids." + player.getName().toLowerCase() + ".uuid", player.getUniqueId().toString());
+        data.getConfig().set("players." + player.getName().toLowerCase() + ".uuid", player.getUniqueId().toString());
+        if (data.getConfig().get("players." + player.getName().toLowerCase() + ".nickname") == null)
+            data.getConfig().set("players." + player.getName().toLowerCase() + ".nickname", player.getName());
         data.saveConfig();
     }
 }

@@ -5,23 +5,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
-
 import static cool.coolplugin.CoolPlugin.colorize;
 import static cool.coolplugin.CoolPlugin.data;
 
 public class Color implements CommandExecutor {
-    private transient String color = null;
+    private static String color = null;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player))
             return false;
-        }
 
-        UUID playerUUID = ((Player) sender).getUniqueId();
-        String path = "players." + playerUUID.toString() + ".color";
+        String path = "players." + sender.getName() + ".color";
 
         if (args.length <= 0) {
             sender.sendMessage(colorize("&aOptions: \n&cred, &6orange, &eyellow, &agreen, &9blue, &5purple, &bcyan, &3aqua, &4darkred, &dpink, &fwhite"));

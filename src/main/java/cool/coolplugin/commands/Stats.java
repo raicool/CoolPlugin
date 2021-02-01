@@ -22,8 +22,8 @@ public class Stats implements CommandExecutor {
         Calendar cal = Calendar.getInstance();
         cal.setTimeZone(TimeZone.getTimeZone("EST"));
         cal.setTimeInMillis(time);
-        return ((cal.get(Calendar.MONTH) + 1) + "-" +
-                cal.get(Calendar.DAY_OF_MONTH) + "-" +
+        return ((cal.get(Calendar.MONTH) + 1) + "/" +
+                cal.get(Calendar.DAY_OF_MONTH) + "/" +
                 cal.get(Calendar.YEAR) + " at " +
                 cal.get(Calendar.HOUR_OF_DAY) + ":" +
                 cal.get(Calendar.MINUTE) + " EST (UTC-05:00)");
@@ -37,18 +37,20 @@ public class Stats implements CommandExecutor {
         if (args.length <= 0)
             // Get player from Command Sender
             player = Bukkit.getPlayer(sender.getName());
-        else {
+        else
             // Try to get player from Bukkit
-            try {
+            try
+            {
                 player = Bukkit.getOfflinePlayer(data.findUUID(args[0]));
-            } catch (NullPointerException | IllegalArgumentException e) {
+            }
+            catch (NullPointerException | IllegalArgumentException e)
+            {
                 sender.sendMessage(colorize("&cERROR: This person may not have logged on or may have never existed."));
                 return true;
             }
-        }
 
         assert player != null;
-        path = "players." + player.getUniqueId() + ".color";
+        path = "players." + player.getName() + ".color";
 
         // Check if prefix or name color is not null
 
