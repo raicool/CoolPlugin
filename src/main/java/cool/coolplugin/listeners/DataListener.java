@@ -22,8 +22,9 @@ public class DataListener implements Listener {
     }
 
     public void reloadConfig() {
-        if (this.configFile == null)
+        if (this.configFile == null) {
             this.configFile = new File(this.plugin.getDataFolder(), "data.yml");
+        }
 
         this.dataConfig = YamlConfiguration.loadConfiguration(this.configFile);
 
@@ -35,8 +36,9 @@ public class DataListener implements Listener {
     }
 
     public FileConfiguration getConfig() {
-        if (this.dataConfig == null)
+        if (this.dataConfig == null) {
             reloadConfig();
+        }
 
         return this.dataConfig;
     }

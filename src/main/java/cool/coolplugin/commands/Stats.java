@@ -1,6 +1,6 @@
 package cool.coolplugin.commands;
 
-import cool.coolplugin.commands.interfaces.CommandInterface;
+import cool.coolplugin.commands.utilities.CommandUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -14,15 +14,16 @@ import static cool.coolplugin.CoolPlugin.colorize;
 import static cool.coolplugin.CoolPlugin.data;
 import static cool.coolplugin.listeners.ServerListener.checkPrefix;
 
-public class Stats implements CommandExecutor, CommandInterface {
+public class Stats extends CommandUtilities implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         OfflinePlayer player;
         String path;
 
-        if (args.length <= 0)
+        if (args.length <= 0) {
             player = Bukkit.getPlayer(sender.getName());
+        }
         else
             try
             {

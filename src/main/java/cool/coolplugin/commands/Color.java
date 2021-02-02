@@ -1,6 +1,6 @@
 package cool.coolplugin.commands;
 
-import cool.coolplugin.commands.interfaces.CommandInterface;
+import cool.coolplugin.commands.utilities.CommandUtilities;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,7 +8,8 @@ import org.bukkit.command.CommandSender;
 import static cool.coolplugin.CoolPlugin.colorize;
 import static cool.coolplugin.CoolPlugin.data;
 
-public class Color implements CommandExecutor, CommandInterface {
+public class Color extends CommandUtilities implements CommandExecutor {
+
     private static String color = null;
 
     @Override
@@ -16,7 +17,7 @@ public class Color implements CommandExecutor, CommandInterface {
 
         isPlayer(sender);
 
-        String path = "players." + sender.getName() + ".color";
+        final String path = "players." + sender.getName().toLowerCase() + ".color";
 
         if (args.length <= 0) {
             sender.sendMessage(colorize("&aOptions: \n&cred, &6orange, &eyellow, &agreen, &9blue, &5purple, &bcyan, &3aqua, &4darkred, &dpink, &fwhite"));

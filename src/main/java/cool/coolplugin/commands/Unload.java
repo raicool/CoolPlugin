@@ -14,10 +14,12 @@ public class Unload implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof ConsoleCommandSender)
+        if (sender instanceof ConsoleCommandSender) {
             pluginLoader.disablePlugin(this.plugin);
-        else
+        }
+        else {
             sender.sendMessage(colorize("&cConsole only command."));
+        }
 
         return true;
     }

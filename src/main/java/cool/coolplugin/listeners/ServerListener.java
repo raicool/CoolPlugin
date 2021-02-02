@@ -23,11 +23,12 @@ public class ServerListener extends Protect implements Listener {
     @EventHandler
     public void chatFormat (AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        String path = "players." + player.getName().toLowerCase()  + ".color";
+        String path = "players." + player.getName().toLowerCase() + ".color";
         String nickPath = "players." + player.getName().toLowerCase() + ".nickname";
 
-        if (inLimbo(player, data))
+        if (inLimbo(player, data)) {
             event.setCancelled(true);
+        }
         event.setFormat(colorize(checkPrefix(player) + data.getConfig().getString(path) + data.getConfig().getString(nickPath) + "&7: &r" + event.getMessage()));
     }
 
@@ -43,8 +44,9 @@ public class ServerListener extends Protect implements Listener {
 
         // Apply changes to data.yml and save
         data.getConfig().set("players." + player.getName().toLowerCase() + ".uuid", player.getUniqueId().toString());
-        if (data.getConfig().get("players." + player.getName().toLowerCase() + ".nickname") == null)
+        if (data.getConfig().get("players." + player.getName().toLowerCase() + ".nickname") == null) {
             data.getConfig().set("players." + player.getName().toLowerCase() + ".nickname", player.getName());
+        }
         data.saveConfig();
     }
 }
