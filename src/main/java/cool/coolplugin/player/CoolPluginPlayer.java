@@ -1,6 +1,7 @@
 package cool.coolplugin.player;
 
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import static cool.coolplugin.CoolPlugin.colorize;
 import static cool.coolplugin.CoolPlugin.data;
@@ -30,6 +31,7 @@ public class CoolPluginPlayer
         else return color;
     }
 
+    // Nicknames
     public static String getNickname(OfflinePlayer player)
     {
         String nickname;
@@ -43,6 +45,13 @@ public class CoolPluginPlayer
         else return nickname;
     }
 
+    public static void setNickname(OfflinePlayer player, String nickname)
+    {
+        // ex: ~username:
+        data.getConfig().set("players." + player.getName().toLowerCase() + ".nickname", "~" + nickname);
+        data.saveConfig();
+    }
+
     public static void toggleNickRestrict(OfflinePlayer player)
     {
         // xor the boolean and toggle
@@ -54,4 +63,8 @@ public class CoolPluginPlayer
         return data.getConfig().getBoolean("players." + player.getName().toLowerCase() + ".restrict");
     }
 
+    public static void grabUUID(OfflinePlayer player)
+    {
+        data.getConfig().set("players." + player.getName().toLowerCase() + ".uuid", player.getUniqueId().toString());
+    }
 }
