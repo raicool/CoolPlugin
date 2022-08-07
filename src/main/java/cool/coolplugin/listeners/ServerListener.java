@@ -26,6 +26,15 @@ public class ServerListener implements Listener
     public void onMessageSend(AsyncPlayerChatEvent event)
     {
         Player player = event.getPlayer();
+        event.setCancelled(true);
+
+        // Check if they are muted
+        if (CoolPluginPlayer.isMuted(player))
+        {
+            player.sendMessage(colorize("&7>> &cUnable to send message."));
+            return;
+        }
+
         String message = null;
         String format = null;
 
@@ -49,8 +58,6 @@ public class ServerListener implements Listener
         }
         // Send to console since event gets canceled
         plugin.getLogger().log(Level.INFO, player.getName() + "(" + CoolPluginPlayer.getNickname(player) + ") : " + message);
-
-        event.setCancelled(true);
     }
 
     @EventHandler

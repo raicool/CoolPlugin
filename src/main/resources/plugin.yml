@@ -29,3 +29,7 @@ commands:
     description: "restricts player from using nicknames (Op Only)"
     usage: /<command>
     aliases: [nonick, nickrestrict]
+  mute:
+    description: "mute a player (Op Only)"
+    usage: /<command>
+    aliases: [shutup, playermute]

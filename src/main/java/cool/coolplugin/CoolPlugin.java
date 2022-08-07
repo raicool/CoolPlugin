@@ -29,8 +29,9 @@ public class CoolPlugin extends JavaPlugin
         this.getCommand("Color").setExecutor(new Color());
         this.getCommand("Stats").setExecutor(new Stats());
         this.getCommand("Nickname").setExecutor(new Nickname());
+        this.getCommand("Mute").setExecutor(new Mute());
         this.getCommand("Restrict").setExecutor(new Restrict());
-        this.getCommand("Server").setExecutor(new ServerStats(this));
+        this.getCommand("Server").setExecutor(new Server(this));
         this.getCommand("Unload").setExecutor(new Unload(this));
     }
 

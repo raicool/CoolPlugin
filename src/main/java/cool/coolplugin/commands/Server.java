@@ -2,7 +2,6 @@ package cool.coolplugin.commands;
 
 import cool.coolplugin.CoolPlugin;
 
-import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +14,7 @@ import java.math.RoundingMode;
 
 import static cool.coolplugin.CoolPlugin.colorize;
 
-public class ServerStats implements CommandExecutor
+public class Server implements CommandExecutor
 {
 
     @Override
@@ -44,14 +43,14 @@ public class ServerStats implements CommandExecutor
         return true;
     }
 
-    private final Server getServer;
+    private final org.bukkit.Server getServer;
 
     private long MegaByte(long memory)
     {
         return memory / 1000000;
     }
 
-    public ServerStats(CoolPlugin server)
+    public Server(CoolPlugin server)
     {
         this.getServer = server.getServer();
     }

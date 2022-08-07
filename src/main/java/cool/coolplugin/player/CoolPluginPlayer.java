@@ -19,10 +19,7 @@ public class CoolPluginPlayer
         return getNameColor(player) + getNickname(player);
     }
 
-    public static boolean hasNickname(OfflinePlayer player)
-    {
-        return !getNickname(player).equals("");
-    }
+
 
     public static String getNameColor(OfflinePlayer player)
     {
@@ -45,6 +42,11 @@ public class CoolPluginPlayer
         else return nickname;
     }
 
+    public static boolean hasNickname(OfflinePlayer player)
+    {
+        return !getNickname(player).equals("");
+    }
+
     public static void setNickname(OfflinePlayer player, String nickname)
     {
         // ex: ~username:
@@ -58,11 +60,22 @@ public class CoolPluginPlayer
         data.getConfig().set("players." + player.getName().toLowerCase() + ".restrict", (hasNickRestrict(player) ^ true));
     }
 
+    public static void toggleMute(OfflinePlayer player)
+    {
+        data.getConfig().set("players." + player.getName().toLowerCase() + ".muted", (isMuted(player) ^ true));
+    }
+
     public static boolean hasNickRestrict(OfflinePlayer player)
     {
         return data.getConfig().getBoolean("players." + player.getName().toLowerCase() + ".restrict");
     }
 
+    public static boolean isMuted(OfflinePlayer player)
+    {
+        return data.getConfig().getBoolean("players." + player.getName().toLowerCase() + ".muted");
+    }
+
+    // others
     public static void grabUUID(OfflinePlayer player)
     {
         data.getConfig().set("players." + player.getName().toLowerCase() + ".uuid", player.getUniqueId().toString());
