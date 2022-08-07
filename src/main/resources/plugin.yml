@@ -1,7 +1,7 @@
 name: CoolPlugin
 version: ${project.version}
 main: cool.coolplugin.CoolPlugin
-api-version: 1.16
+api-version: 1.19
 authors: [ rai/wooof ]
 description: Adds various things for vanilla MC servers!
 
@@ -21,12 +21,7 @@ commands:
   unload:
     description: "unload the plugin (Console Only)"
     usage: /<command>
-  nick:
-    description: "changes your chat name"
-    usage: /<command>
-    aliases: [nickname, changename]
-  protect:
-    description: "protects your account"
-    usage: /<command>
-  password:
-    usage: /<command>
+  #nick:
+    #description: "changes your chat name"
+    #usage: /<command>
+    #aliases: [nickname, changename]
