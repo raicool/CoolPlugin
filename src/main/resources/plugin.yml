@@ -3,7 +3,7 @@ version: ${project.version}
 main: cool.coolplugin.CoolPlugin
 api-version: 1.19
 authors: [ rai/wooof ]
-description: Adds various things for vanilla MC servers!
+description: ${project.description}
 
 commands:
   color:
@@ -11,21 +11,21 @@ commands:
     usage: /<command>
     aliases: [changecolor, setcolor]
   stats:
-    description: "view things like a player's UUID!"
+    description: "view a player's stats!"
     usage: /<command>
     aliases: [viewstats, whois, checkplayer]
   server:
-    description: "view the server's stats"
+    description: "view the server's stats!"
     usage: /<command>
     aliases: [serverstats]
   unload:
     description: "unload the plugin (Console Only)"
     usage: /<command>
   nick:
-    description: "changes your chat name"
+    description: "change your chat name!"
     usage: /<command>
     aliases: [nickname, changename]
   restrict:
-    description: "restricts player from using nicknames"
+    description: "restricts player from using nicknames (Op Only)"
     usage: /<command>
     aliases: [nonick, nickrestrict]

@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import static cool.coolplugin.CoolPlugin.colorize;
-import static java.lang.Math.round;
 
 public class ServerStats implements CommandExecutor
 {

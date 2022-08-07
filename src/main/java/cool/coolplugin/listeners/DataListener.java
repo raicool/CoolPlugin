@@ -12,12 +12,14 @@ import java.io.InputStreamReader;
 import java.util.UUID;
 import java.util.logging.Level;
 
-public class DataListener implements Listener {
+public class DataListener implements Listener
+{
     private final CoolPlugin plugin;
     private FileConfiguration dataConfig = null;
     private File configFile = null;
 
-    public DataListener(CoolPlugin plugin) {
+    public DataListener(CoolPlugin plugin)
+    {
         this.plugin = plugin;
     }
 
