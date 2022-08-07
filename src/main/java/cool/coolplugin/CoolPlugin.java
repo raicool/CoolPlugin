@@ -20,10 +20,10 @@ public class CoolPlugin extends JavaPlugin
     @Override
     public void onEnable()
     {
-        this.getServer().getPluginManager().registerEvents(new ServerListener(), this);
+        this.getServer().getPluginManager().registerEvents(new ServerListener(this), this);
 
         //load config.yml
-        this.data = new DataListener(this);
+        data = new DataListener(this);
 
         //load commands
         this.getCommand("Color").setExecutor(new Color());
