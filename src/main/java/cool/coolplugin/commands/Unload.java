@@ -10,14 +10,17 @@ import org.bukkit.plugin.Plugin;
 
 import static cool.coolplugin.CoolPlugin.colorize;
 
-public class Unload implements CommandExecutor {
-
+public class Unload implements CommandExecutor
+{
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof ConsoleCommandSender) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+    {
+        if (sender instanceof ConsoleCommandSender)
+        {
             pluginLoader.disablePlugin(this.plugin);
         }
-        else {
+        else
+        {
             sender.sendMessage(colorize("&cConsole only command."));
         }
 
@@ -26,7 +29,8 @@ public class Unload implements CommandExecutor {
 
     Plugin plugin;
     PluginLoader pluginLoader;
-    public Unload(CoolPlugin server) {
+    public Unload(CoolPlugin server)
+    {
         this.pluginLoader = server.getPluginLoader();
         this.plugin = server.getPlugin(server.getClass());
     }

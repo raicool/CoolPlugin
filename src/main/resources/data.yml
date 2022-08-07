@@ -1,6 +1,1 @@
-# server protect is for offline servers since uuid is based from username
-serverprotect: false
-# limbo world thats used if serverprotect is enabled
-serverlimbo:
-
 players:

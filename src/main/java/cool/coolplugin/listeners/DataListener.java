@@ -21,29 +21,35 @@ public class DataListener implements Listener {
         this.plugin = plugin;
     }
 
-    public void reloadConfig() {
-        if (this.configFile == null) {
+    public void reloadConfig()
+    {
+        if (this.configFile == null)
+        {
             this.configFile = new File(this.plugin.getDataFolder(), "data.yml");
         }
 
         this.dataConfig = YamlConfiguration.loadConfiguration(this.configFile);
 
         InputStream defaultStream = this.plugin.getResource("data.yml");
-        if (defaultStream != null) {
+        if (defaultStream != null)
+        {
             YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
             this.dataConfig.setDefaults(defaultConfig);
         }
     }
 
-    public FileConfiguration getConfig() {
-        if (this.dataConfig == null) {
+    public FileConfiguration getConfig()
+    {
+        if (this.dataConfig == null)
+        {
             reloadConfig();
         }
 
         return this.dataConfig;
     }
 
-    public void saveConfig() {
+    public void saveConfig()
+    {
         if (this.dataConfig == null || this.configFile == null)
             return;
 
@@ -57,7 +63,8 @@ public class DataListener implements Listener {
         }
     }
 
-    public void saveDefaultConfig() {
+    public void saveDefaultConfig()
+    {
         if (this.configFile == null)
             this.configFile = new File(this.plugin.getDataFolder(), "data.yml");
 
@@ -65,7 +72,8 @@ public class DataListener implements Listener {
             this.plugin.saveResource("data.yml", false);
     }
 
-    public UUID findUUID(String player) {
+    public UUID findUUID(String player)
+    {
         if (this.getConfig().contains("players." + player.toLowerCase() + ".uuid"))
             return UUID.fromString((String)this.getConfig().get("players." + player + ".uuid"));
         return null;

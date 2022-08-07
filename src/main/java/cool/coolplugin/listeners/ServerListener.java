@@ -1,52 +1,59 @@
 package cool.coolplugin.listeners;
 
-import cool.coolplugin.commands.Protect;
-import cool.coolplugin.protection.Limbo;
-import org.bukkit.OfflinePlayer;
+import cool.coolplugin.player.CoolPluginPlayer;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import static cool.coolplugin.CoolPlugin.colorize;
-import static cool.coolplugin.CoolPlugin.data;
+import static cool.coolplugin.CoolPlugin.*;
 
-public class ServerListener extends Protect implements Listener {
-
-    public static String checkPrefix(OfflinePlayer player) {
-        if (player.isOp())
-            return colorize("&c&lOp&r ");
-        else return "";
-    }
-    
+public class ServerListener implements Listener
+{
     @EventHandler
-    public void chatFormat (AsyncPlayerChatEvent event) {
+    public void onMessageSend(AsyncPlayerChatEvent event)
+    {
         Player player = event.getPlayer();
-        String path = "players." + player.getName().toLowerCase() + ".color";
-        String nickPath = "players." + player.getName().toLowerCase() + ".nickname";
+        String message;
+        String format;
 
-        if (inLimbo(player, data)) {
-            event.setCancelled(true);
+        for (Player recipient : event.getRecipients())
+        {
+            message = event.getMessage();
+
+            // username: text
+            format =
+                    CoolPluginPlayer.getPrefix(player) +
+                    CoolPluginPlayer.getNameStylized(player) + "&7: &r";
+
+            // Ping players if mentioned
+            if (message.contains(recipient.getName()))
+            {
+                message = message.replace(recipient.getName(), "&a" + recipient.getName() + "&r");
+                recipient.playSound(recipient.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 2.0f);
+            }
+
+            format += message;
+            recipient.sendMessage(colorize(format));
         }
-        event.setFormat(colorize(checkPrefix(player) + data.getConfig().getString(path) + data.getConfig().getString(nickPath) + "&7: &r" + event.getMessage()));
+
+        event.setCancelled(true);
     }
 
     @EventHandler
-    public void playerJoinEvent (PlayerJoinEvent event) {
+    public void playerJoinEvent (PlayerJoinEvent event)
+    {
         Player player = event.getPlayer();
-
-        // Check if player has a pass connected to account
-        if (data.getConfig().getString("players." + player.getName().toLowerCase() + ".password") != null & data.getConfig().getBoolean("serverprotect", true)) {
-            super.Prompt(player);
-            Limbo.sendToLimbo(player);
-        }
 
         // Apply changes to data.yml and save
-        data.getConfig().set("players." + player.getName().toLowerCase() + ".uuid", player.getUniqueId().toString());
-        if (data.getConfig().get("players." + player.getName().toLowerCase() + ".nickname") == null) {
+        if (!CoolPluginPlayer.hasNickname(player))
+        {
+            data.getConfig().set("players." + player.getName().toLowerCase() + ".uuid", player.getUniqueId().toString());
             data.getConfig().set("players." + player.getName().toLowerCase() + ".nickname", player.getName());
         }
+
         data.saveConfig();
     }
 }
